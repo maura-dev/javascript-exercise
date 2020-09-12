@@ -2,74 +2,117 @@
 <html>
 <head>
 	<title>Day 3 Exercise</title>
+	<style type="text/css">
+		body{
+			background-color: black;
+			font-family: sans-serif;
+			padding-top: 250px;
+		}
+
+		div{
+			margin:auto;
+			width:400px;
+			height:150px;
+			border:2px solid #fffffe;
+			color:#fffffe;
+			text-align: center;
+		}
+
+		h2{
+			font-weight:700;
+		}
+
+		button{
+			background-color:green;
+			border-radius:10px;
+			color:black;
+			width: :50px;
+			height:30px;
+		}
+
+		button:hover{
+			background-color: #fffffe;
+		}
+	</style>
 </head>
 <body>
 
+	<div>
+		<h2>Maureen's mobile services</h2>
+
+		<button onclick="myFunction()">Get started</button>
+
+	</div>
+
 	<script type="text/javascript">
-		statement=Number(prompt(" WELCOME TO MAUREEN MOBILE SERVICES\n 1. Airtime-self\n 2. Airtime-others\n 3. Data\n 4. Transfer\n"))
-		
-	if(statement==1){
-		select1=prompt("Enter amount")
 
-		selectConfirm=confirm("Confirm amount")
+		function myFunction(){
 
-		mainMenu=alert("Recharge of "+select1+" naira was successful")
-
-		alert("Completed transaction")	
-		
-	} 
-	
-
-	else if(statement==2){
-		select2=prompt("Enter amount")
-
-		recipient=(prompt("Enter recipient's number"))
-
-		if(recipient.length>=10) {
-			alert("Successfully transferred NGN"+select2+ " to "+recipient+".")
-			alert("Completed transaction")
-		}
-
-		else{
-			alert("Invalid recipient number")		
-		}		
+			statement=Number(prompt(" WELCOME TO MAUREEN MOBILE SERVICES\n 1. Airtime-self\n 2. Airtime-others\n 3. Data\n 4. Transfer\n"))
 			
-	}
-		
-	else if(statement==3){
-		data=parseInt(prompt("Input data amount to buy in MB\n (Minimum of 50MB)"))
+				if(statement==1){
+					select1=prompt("Enter amount")
 
-			if(data<50){
-				alert("You cannot purchase data below 50MB")
-			}
+					selectConfirm=confirm("Confirm amount")
 
-			else{
-				alert("You have requested for "+data+"MB which is NGN"+data/2+".\n Do you want to proceed?" )
+					mainMenu=alert("Recharge of "+select1+" naira was successful")
 
-				alert("Successfully purchased "+data+"MB of data")
-			}
+					alert("Completed transaction")	
+					
+				} 
+				
 
-	}
+				else if(statement==2){
+					select2=prompt("Enter amount")
 
-	else if(statement==4){
-		amount=prompt("Input amount to transfer")
-		number=prompt("Input recipient number")
+					recipient=(prompt("Enter recipient's number"))
 
-		if(number.length>=10){
+					if(recipient.length>=10) {
+						alert("Successfully transferred NGN"+select2+ " to "+recipient+".")
+						alert("Completed transaction")
+					}
 
-			alert("Are you sure you want to transfer NGN"+amount+" to "+number+" ? ")
+					else{
+						alert("Invalid recipient number")		
+					}		
+						
+				}
+					
+				else if(statement==3){
+					data=parseInt(prompt("Input data amount to buy in MB\n (Minimum of 50MB)"))
 
-			alert("Successfully transferred NGN"+amount+" to "+number+".")
+						if(data<50){
+							alert("You cannot purchase data below 50MB")
+						}
+
+						else{
+							alert("You have requested for "+data+"MB which is NGN"+data/2+".\n Do you want to proceed?" )
+
+							alert("Successfully purchased "+data+"MB of data")
+						}
+
+				}
+
+				else if(statement==4){
+					amount=prompt("Input amount to transfer")
+					number=prompt("Input recipient number")
+
+					if(number.length>=10){
+
+						alert("Are you sure you want to transfer NGN"+amount+" to "+number+" ? ")
+
+						alert("Successfully transferred NGN"+amount+" to "+number+".")
+					}
+					else{
+						alert("invalid recipient number")
+					}
+
+				}
+
+				else{
+					alert("Invalid code!")
+				}
 		}
-		else{
-			alert("invalid recipient number")
-		}
-
-	}
-
-	else{
-		alert("Invalid code!")
-	}
 	
 	</script>
 
