@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+
+    <script>
+        function myCalc(){
+            //Enter first number
+            number1=Number(prompt("Enter a number"))
+
+            while(!number1){
+                number1=Number(prompt("Invalid number \nEnter a valid number"))
+            }
+
+            //Select your operation
+            operation=Number(prompt("Select operation to perform\n 1. Addition\n 2. Subtraction\n 3. Division\n 4. Multiplication"))
+
+            while(!operation){
+                operation=Number(prompt("Invalid operation\nSelect a valid operation"))
+            }
+
+            //Enter second number
+            number2=Number(prompt("Enter another number"))
+
+            while(!number2){
+                number2=Number(prompt("Invalid number \nEnter a valid number"))
+            }
+
+            //FUNCTIONS FOR THE OPERATIONS TO BE CARRIED OUT
+            function addition(number1, number2){
+            alert(number1 + number2)
+            }
+
+            function subtraction(number1, number2){
+            alert(number1 - number2)
+            }
+
+            function division(number1, number2){
+            alert(number1 / number2)
+            }
+
+            function multiplication(number1, number2){
+            alert(number1 * number2)
+            }
+
+            //CALLING OF FUNCTION FOR EACH OPERATION SELECTED
+            if(operation==1){
+            addition(number1, number2)
+            }
+
+            if(operation==2){
+            subtraction(number1, number2)
+            }
+
+            if(operation==3){
+            division(number1, number2)
+            }
+
+            if(operation==4){
+            multiplication(number1, number2)
+            }
+
+            //TO RE-USE THE CALCULATOR
+            tryAgain=Number(prompt("Do you want to try again?\n 1. Yes\n 2. No"))
+            if(tryAgain==1){
+                myCalc()
+            }
+            else{
+                alert("Ended my Calculator")
+            }
+            
+        }  
+        myCalc()  
+    </script>
+	
+</body>
+</html>
