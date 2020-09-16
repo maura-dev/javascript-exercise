@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>DOM assignment</title>
+</head>
+<body>
+    
+    <table>
+		<thead>
+			<tr>
+				<th>S/N</th>
+				<th>Company Name</th>
+				<th>Company Email</th>
+				<th>Company Phone</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+
+		<tbody id="content">
+
+		</tbody>
+
+	</table>
+
+	<script type="text/javascript">
+
+		companies = [
+			company1 = {
+				"sn": "1",
+				"name": "Facebook",
+				"email": "hi@facebook.com",
+				"phone": "0067212981",
+				"location": "U.S.A"
+			},
+
+			company2 = {
+				"sn": "2",
+				"name": "Google",
+				"email": "hi@google.com",
+				"phone": "59067212981",
+				"location": "Germany"
+			},
+
+			company3 = {
+				"sn": "3",
+				"name": "Twitter",
+				"email": "hi@twitter.com",
+				"phone": "016721298",
+				"location": "London"
+			},
+
+			company4 = {
+				"sn": "4",
+				"name": "i2talk",
+				"email": "hi@i2talk.com",
+				"phone": "09067212981",
+				"location": "Nigeria"
+			}
+		];
+
+		data = ''
+
+		y = companies.length
+		for (x = 0; x < y; x++) {
+			data += `<tr>
+ 			<td>${companies[x].sn}</td>
+ 			<td>${companies[x].name}</td>
+ 			<td>${companies[x].email}</td>
+ 			<td>${companies[x].phone}</td>
+ 			<td>${companies[x].location}</td>
+ 			</tr>`
+             
+			document.getElementById("content").innerHTML = data
+		}
+	</script>
+</body>
+</html>
