@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+
+	<style type="text/css">
+		
+		.page{
+			width:60%;
+			background-color: lightslategray;
+			margin:auto;
+			padding:20px;
+			border-radius: 10px;
+		}
+
+		#delete-btn{
+			background-color: red;
+			border-radius: 10px;
+			padding:10px;
+			border:2px solid black;
+
+		}
+
+		#edit-btn{
+			background-color: teal;
+			border-radius:10px;
+			padding:10px;
+			border:2px solid black;
+		}
+
+		#addNew-btn{
+			background-color:lightslategray;
+			box-shadow: 2px 2px 2px 2px black;
+			border-radius: 10px;
+			padding: 10px;
+			border: 2px solid black;
+			display: block;
+			margin:auto;
+		}
+
+		#addNew-btn:hover, #edit-btn:hover, #delete-btn:hover{
+			background-color: blanchedalmond;
+			box-shadow: 2px 2px 2px 2px black;
+		}
+	</style>
+</head>
+<body>
+	<div class="page">
+
+		<div id="content">
+			
+		</div>
+		<!--BUTTON FOR ADDING NEW USER-->
+	
+	</div>
+
+	<script type="text/javascript">
+		//ARRAY OF NAMES OF USERS
+		names=[
+	
+			{ pics: "maureen.jpg",
+			  name: "Maureen Anyanwu",
+			  email: "maureen@tiidelab.com",
+			  phoneNumber: "09067212981"	
+			},
+
+			{  pics: "1.jpg",
+			  name: "Asher Milestone",
+			  email: "fratboyasher@tiidelab.com",
+			  phoneNumber: "+167259851"	
+			},
+
+			{  pics: "2.jpg",
+			  name: "Annalise Keating",
+			  email: "annamay@tiidelab.com",
+			  phoneNumber: "+106725860"
+			},
+
+			{  pics: "1.jpg",
+			  name: "Connor Walsh",
+			  email: "walsh@tiidelab.com",
+			  phoneNumber: "+1487785786"	
+			}
+
+		]
+
+		//FUNCTION FOR ADDING NEW USER
+		function addNew(){
+
+			validate=confirm("Do you want to add another user?")
+
+			if(validate==true){
+				//NEW USER BEING ADDED TO ARRAY BASED ON USERS INPUT
+				names[names.length]={
+					 pics: prompt(`Select image icon
+					1. Male
+					2. Female`) + ".jpg",
+					name: prompt("Enter your full name"),
+					email: prompt("Enter your e-mail"),
+					phoneNumber:prompt("Enter your phone number")
+
+				}
+					
+				showNames()
+			}
+		}
+
+		//FUNCTION FOR DELETING USERS
+		function deleteNames(x){
+			validate=confirm("Do you want to delete this user?")
+
+				if(validate==true){
+					names.splice(x,1)
+
+					showNames()
+				}
+
+				else{
+					showNames()
+				}
+			
+		}
+		
+		//FUNCTION FOR DISPLAYING THE ARRAY ON THE DOCUMENT
+		function showNames(){
+			y= (names.length)
+
+			cont=""
+
+			for(x=0; x<y; x++){
+
+				cont+=`<div>
+						<img src="${names[x].pics}" alt="" width= "100px" height="100px"><br>
+						<strong>Full Name</strong>: ${names[x].name}<br>
+						<strong>Email</strong>: ${names[x].email}<br>
+						<strong>Phone Number</strong>: ${names[x].phoneNumber}
+					
+					</div>
+					<!--BUTTONS FOR DELETING AND EDITING USERS-->
+					<button id="delete-btn" onclick="deleteNames(${x})">Delete</button>
+					<button id="edit-btn" onclick="editNames()">Edit user</button>
+					<hr>`
+
+					document.getElementById("content").innerHTML= cont
+
+			}
+		}
+		//FUNCTION FOR DISPLAYING NAMES BEING CALLED
+		showNames()
+
+		//Note to self: do not use javascript keywords e.g confirm to name your variable else you will stay up this late trying to debug and debug//
+
+	</script>
+
+
+</body>
+</html>

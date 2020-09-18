@@ -4,7 +4,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>DOM assignment</title>
+    <title>DOM assignment</title>
+    
+    <style>
+
+        table{
+            margin:auto;
+        }
+
+         td{
+            margin-left:10px;
+            margin-right:10px;
+        }
+
+
+    </style>
 </head>
 <body>
     
@@ -13,10 +27,11 @@
 			<tr>
 				<th>S/N</th>
 				<th>Company Name</th>
-				<th>Company Email</th>
-				<th>Company Phone</th>
+				<th> Email</th>
+				<th> Phone</th>
 				<th>Location</th>
-			</tr>
+            </tr>
+            <br>
 		</thead>
 
 		<tbody id="content">
@@ -71,10 +86,13 @@
  			<td>${companies[x].email}</td>
  			<td>${companies[x].phone}</td>
  			<td>${companies[x].location}</td>
- 			</tr>`
-             
+ 			</tr>
+            <br>`
+
 			document.getElementById("content").innerHTML = data
 		}
+
+    
 	</script>
 </body>
 </html>
