@@ -123,6 +123,23 @@
 				}
 			
 		}
+
+		function editNames(x){
+			validate=confirm("Do you want to edit this user?")
+
+			if(validate==true){
+				names[x]={
+					pics: prompt(`Select image icon
+					1. Male
+					2. Female`, names[x].pics) + ".jpg",
+					name: prompt("Enter your full name", names[x].name),
+					email: prompt("Enter your e-mail", names[x].email),
+					phoneNumber:prompt("Enter your phone number", names[x].phoneNumber)
+					}
+					
+					showNames()	
+			}
+		}
 		
 		//FUNCTION FOR DISPLAYING THE ARRAY ON THE DOCUMENT
 		function showNames(){
@@ -141,12 +158,12 @@
 					</div>
 					<!--BUTTONS FOR DELETING AND EDITING USERS-->
 					<button id="delete-btn" onclick="deleteNames(${x})">Delete</button>
-					<button id="edit-btn" onclick="editNames()">Edit user</button>
-					<hr>`
-
-					document.getElementById("content").innerHTML= cont
+					<button id="edit-btn" onclick="editNames(x)">Edit user</button>
+					<hr>`		
 
 			}
+			
+			document.getElementById("content").innerHTML= cont
 		}
 		//FUNCTION FOR DISPLAYING NAMES BEING CALLED
 		showNames()
