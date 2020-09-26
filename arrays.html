@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>Arrays(editing, deleting and adding objects)</title>
 
 	<style type="text/css">
 		
@@ -123,22 +123,23 @@
 				}
 			
 		}
-
+		//FUNCTION FOR EDITING USERS
 		function editNames(x){
 			validate=confirm("Do you want to edit this user?")
 
 			if(validate==true){
-				names[x]={
-					pics: prompt(`Select image icon
-					1. Male
-					2. Female`, names[x].pics) + ".jpg",
-					name: prompt("Enter your full name", names[x].name),
-					email: prompt("Enter your e-mail", names[x].email),
-					phoneNumber:prompt("Enter your phone number", names[x].phoneNumber)
-					}
-					
-					showNames()	
+				editedName={
+						pics: prompt("Select image icon\n 1. Male \n 2. Female", names[x].pics) + ".jpg",
+						name: prompt("Enter your full name", names[x].name),
+						email: prompt("Enter your e-mail", names[x].email),
+						phoneNumber:prompt("Enter your phone number", names[x].phoneNumber)
+						}	
+				
+				 names[x] = editedName
+				
+				showNames()	
 			}
+			
 		}
 		
 		//FUNCTION FOR DISPLAYING THE ARRAY ON THE DOCUMENT
@@ -158,7 +159,7 @@
 					</div>
 					<!--BUTTONS FOR DELETING AND EDITING USERS-->
 					<button id="delete-btn" onclick="deleteNames(${x})">Delete</button>
-					<button id="edit-btn" onclick="editNames(x)">Edit user</button>
+					<button id="edit-btn" onclick="editNames(${x})">Edit user</button>
 					<hr>`		
 
 			}
