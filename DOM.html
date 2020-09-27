@@ -10,12 +10,38 @@
 
         table{
             margin:auto;
+            background-color: aquamarine;
+            padding:20px;
+            border-radius:10px; 
         }
 
-         td{
-            margin-left:10px;
-            margin-right:10px;
+         td,th{
+            padding:10px;
         }
+
+        td{
+        	border:2px solid green;
+        }
+
+        button{
+        	background-color:aquamarine;
+			box-shadow: 2px 2px 2px 2px black;
+			border-radius: 10px;
+			padding: 10px;
+			border: 2px solid aquamarine;
+			display: block;
+			margin: 50px auto auto auto;
+			outline-style: none;
+        }
+
+        button:hover{
+        	background-color: green;
+        	padding:20px;
+    		outline-style: none;
+
+        }
+
+
 
 
     </style>
@@ -39,6 +65,8 @@
 		</tbody>
 
 	</table>
+
+	<button onclick="addNewCompany()">+Add New Company</button>
 
 	<script type="text/javascript">
 
@@ -76,22 +104,39 @@
 			}
 		];
 
-		data = ''
 
-		y = companies.length
-		for (x = 0; x < y; x++) {
-			data += `<tr>
- 			<td>${companies[x].sn}</td>
- 			<td>${companies[x].name}</td>
- 			<td>${companies[x].email}</td>
- 			<td>${companies[x].phone}</td>
- 			<td>${companies[x].location}</td>
- 			</tr>
-            <br>`
+		function addNewCompany(){
+			companies[companies.length]={
+				"sn": companies.length + 1,
+				"name": prompt("Enter company's name"),
+				"email": prompt("Enter company's email"),
+				"phone": prompt("Enter company's phone number"),
+				"location": prompt("Enter company's location")
+			}
 
-			document.getElementById("content").innerHTML = data
+			showCompanies()
 		}
 
+
+		function showCompanies(){
+			data = ''
+
+			y = companies.length
+			for (x = 0; x < y; x++) {
+				data += `<tr>
+	 			<td>${companies[x].sn}</td>
+	 			<td>${companies[x].name}</td>
+	 			<td>${companies[x].email}</td>
+	 			<td>${companies[x].phone}</td>
+	 			<td>${companies[x].location}</td>
+	 			</tr>
+	            <br>`
+
+			}
+			document.getElementById("content").innerHTML = data
+
+	}
+	showCompanies()
     
 	</script>
 </body>
