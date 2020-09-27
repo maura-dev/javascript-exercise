@@ -34,10 +34,12 @@
 			width:300px;
 			height:230px;
 			border:2px solid black;
+			border-radius: 20px;
 			padding: 5px;
 			margin: 10px;
 			text-align:center;
-			box-shadow: 2px 2px 2px 2px black;
+			background-color: white;
+			box-shadow: 4px 4px 4px 4px black;
 		}
 
 		.buttons{
@@ -120,6 +122,18 @@
 			width: 50%;
 			display: block;
 			margin: auto;
+		}
+
+		@media screen and (max-width: 375px){
+			.user-card{
+				height:50%;
+			}
+		}
+
+		@media screen and (max-width:450px){
+			input,select{
+				width:80%;
+			}	
 		}
 
 	</style>
@@ -213,26 +227,7 @@
 
         }
 
-        formDetails=`<form>
-				<p class="top">Edit User Details</p>
-				<p>Full Name</p>
-				<input type="text" placeholder=""  name ="fullName" id="editName" />
-
-				<p>Email</p>
-				<input type="text" placeholder=""  name="email" id="editEmail" />
-
-				<p>Phone</p>
-				<input type="text" placeholder=""  name="phoneNumber" id="editPhoneNumber"/>
-
-				<p>Display Image</p>
-				<select id="editImg">
-					<option value="1.jpg">Male image</option>
-					<option value="2.jpg">Female image</option>
-				</select>
-
-				<button id="submitEditForm-btn" onclick="editNames(x)">Submit</button>
-			</form>`
-
+        
 
         //FUNCTION TO SHOW EDIT USER FORM
 		function showEditForm(x){
@@ -243,26 +238,27 @@
 			document.getElementById("cancel-btn").style.display="block"
 
             //SHOWS USER DETAILS AS VALUES TO BE EDITED
-            
-			//document.getElementById("editImg").value= allUsers[x].pics
-			//document.getElementById("editName").value= allUsers[x].name
-			//document.getElementById("editEmail").value= allUsers[x].email
-			//document.getElementById("editPhoneNumber").value= allUsers[x].phoneNumber	
+            document.getElementById("userId").value= x
+			document.getElementById("editImg").value= allUsers[x].pics
+			document.getElementById("editName").value= allUsers[x].name
+			document.getElementById("editEmail").value= allUsers[x].email
+			document.getElementById("editPhoneNumber").value= allUsers[x].phoneNumber	
 		}
 
 
         //FUNCTION FOR EDITING USERS
-		function editNames(x){
-			
+		function editNames(){
+			userId= document.getElementById("userId").value
+
             editedUser={
-                    pics: document.getElementById("editImg").value,
-                    name: document.getElementById("editName").value,
-                    email: document.getElementById("editEmail").value,
-                    phoneNumber: document.getElementById("editPhoneNumber").value
+                    pics:document.getElementById("editImg").value,
+                    name:document.getElementById("editName").value,
+                    email:document.getElementById("editEmail").value,
+                    phoneNumber:document.getElementById("editPhoneNumber").value
                 }
 
             
-                allUsers[x]= editedUser
+                allUsers[userId]= editedUser
                 //alert(JSON.stringify(allUsers[x]))
                 localStorage.setItem("allUsers", JSON.stringify(allUsers))
                 
@@ -293,7 +289,7 @@
 			y= (allUsers.length)
 
 			cont=""
-
+			formDetails=""
 			for(x=0; x<y; x++){
 
 				cont+=`<div class="user-card">
@@ -308,6 +304,29 @@
 								<button id="edit-btn" onclick="showEditForm(${x})">Edit user</button>
 							</div>
 						</div>`
+
+				//DETAILS FOR EDIT USER FORM
+				formDetails=`<form>
+				<p class="top">Edit User Details</p>
+				<input type="hidden" id="userId"/>
+				<p>Full Name</p>
+				<input type="text" placeholder=""  name ="fullName" id="editName" />
+
+				<p>Email</p>
+				<input type="text" placeholder=""  name="email" id="editEmail" />
+
+				<p>Phone</p>
+				<input type="text" placeholder=""  name="phoneNumber" id="editPhoneNumber"/>
+
+				<p>Display Image</p>
+				<select id="editImg">
+					<option value="1.jpg">Male image</option>
+					<option value="2.jpg">Female image</option>
+				</select>
+
+				<button id="submitEditForm-btn" onclick="editNames()">Submit</button>
+			</form>`
+
 
 			}
 
