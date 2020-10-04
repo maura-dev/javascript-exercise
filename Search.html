@@ -60,18 +60,17 @@
 		}
 
 		#edit-btn{
-			background-color: teal;
+			background-color:limegreen;
 			border-radius:10px;
 			padding:10px;
 			border:2px solid black;
 		}
 
 		#addNew-btn{
-			background-color:lightslategray;
-			box-shadow: 2px 2px 2px 2px black;
+			background-color:teal;
 			border-radius: 10px;
 			padding: 10px;
-			border: 2px solid lightslategray;
+			border: 2px solid teal;
 			display: block;
 			margin: 20px 20px 20px auto;
 		}
@@ -87,7 +86,6 @@
 
 		#cancel-btn{
 			background-color:red;
-			box-shadow: 2px 2px 2px 2px black;
 			border-radius: 10px;
 			padding: 10px 50px 10px 50px;
 			border: 2px solid red;
@@ -141,13 +139,32 @@
 
 		#back-btn{
 			background-color:teal;
-			box-shadow: 2px 2px 2px 2px black;
 			border-radius: 10px;
 			padding: 10px;
 			border: 2px solid teal;
 			display: none;
 			margin: 20px auto 20px auto;
 		}
+
+		#search-tab{
+			width:70%;
+			display: block;
+			margin: 0px auto 20px auto;
+
+		}
+
+		#searchParam{
+			width:40%;
+			display: inline-block;
+		}
+
+		#search-tab > button{
+			margin-left:40px;
+			padding:10px;
+			background-color: limegreen;
+			border-radius: 10px;
+		}
+
 
 		@media screen and (max-width: 375px){
 			.user-card{
@@ -168,9 +185,11 @@
 	<button id="addNew-btn" onclick="showAddNewForm()">Add new user</button>
 
 	<!--SEARCH USERS-->
-	<input type="text" size="45" id="searchParam"/><button onclick="search()">Search</button>
-	<button onclick="searchAll()">Search all</button>
-	<button onclick="searchIncludes()">Search includes</button>
+	<div id="search-tab">
+	<input type="text" id="searchParam"/><button onclick="search()">Search</button>
+	<button onclick="searchAll()" id="searchAll-btn">Search all</button>
+	<button onclick="searchIncludes()">Part search</button>
+	</div>
 
 	<!--SHOW THE NUMBER OF RECORDS FOUND WHEN SEARCHING FOR A USER-->
 	<h3 id="records"></h3>
@@ -221,7 +240,7 @@
 
         //GET ITEMS OF THE ARRAY FROM THE LOCAL STORAGE 
 		allUsers=JSON.parse(localStorage.getItem("allUsers"))
-		//substituteUsers=JSON.parse(localStorage.getItem("allUsers"))
+		newArr=JSON.parse(localStorage.getItem("allUsers"))
         if(allUsers==null||allUsers==undefined){
             allUsers=[]
         }
@@ -230,25 +249,26 @@
         function search(){
 			param= document.getElementById("searchParam").value
 			param=param.toLowerCase()
-			findName= allUsers.find(x=>x.name.toLowerCase()==param)
-			//findIndex= allUsers.findIndex(x=>x.name.toLowerCase()==param)
-			//alert(findIndex)
+			findName= newArr.find(x=>x.name.toLowerCase()==param)
+			findIndex= allUsers.findIndex(x=>x.name.toLowerCase()==param)
+			
 			if(findName==null||findName==undefined){
 				alert("No records found!")
 			}
 
 			else{
-				allUsers=[]
-				allUsers.push(findName)
-				showNames()
+				newArr=[]
+				newArr.push(findName)
+				showNewNames()
 				document.getElementById("records").style.display="block"
 				document.getElementById("back-btn").style.display="block"
 				document.getElementById("addNew-btn").style.display="none"
-				if(allUsers.length==1){
+				document.getElementById("search-tab").style.display="none"
+				if(newArr.length==1){
 					document.getElementById("records").innerHTML=`<b> 1 record found</b>`
 				}
 				else{
-					document.getElementById("records").innerHTML=`<b>${allUsers.length} records found</b>`
+					document.getElementById("records").innerHTML=`<b>${newArr.length} records found</b>`
 				}
 			}
 		}
@@ -257,22 +277,24 @@
 		function searchAll(){
 			param= document.getElementById("searchParam").value
 			param=param.toLowerCase()
-			allUsers= allUsers.filter(x=>x.name.toLowerCase()==param)
-			if(allUsers==null||allUsers==undefined){
+			newArr= newArr.filter(x=>x.name.toLowerCase()==param)
+
+			if(newArr==null||newArr==undefined){
 				alert("No records found!")
 			}
 
 			else{
-				showNames()
+				showNewNames()
 				document.getElementById("records").style.display="block"
 				document.getElementById("back-btn").style.display="block"
 				document.getElementById("addNew-btn").style.display="none"
+				document.getElementById("search-tab").style.display="none"
 
-				if(allUsers.length==1){
+				if(newArr.length==1){
 					document.getElementById("records").innerHTML=`<b> 1 record found</b>`
 				}
 				else{
-					document.getElementById("records").innerHTML=`<b>${allUsers.length} records found</b>`
+					document.getElementById("records").innerHTML=`<b>${newArr.length} records found</b>`
 				}
 			}
 		}
@@ -280,22 +302,23 @@
 		function searchIncludes(){
 			param= document.getElementById("searchParam").value
 			param=param.toLowerCase()
-			allUsers= allUsers.filter(x=>x.name.toLowerCase().includes(param))
-			if(allUsers==null||allUsers==undefined){
+			newArr= newArr.filter(x=>x.name.toLowerCase().includes(param))
+			if(newArr==null||newArr==undefined){
 				alert("No records found!")
 			}
 			
 			else{
-				showNames()
+				showNewNames()
 				document.getElementById("records").style.display="block"
 				document.getElementById("back-btn").style.display="block"
 				document.getElementById("addNew-btn").style.display="none"
+				document.getElementById("search-tab").style.display="none"
 				
-				if(allUsers.length==1){
+				if(newArr.length==1){
 					document.getElementById("records").innerHTML=`<b> 1 record found</b>`
 				}
 				else{
-					document.getElementById("records").innerHTML=`<b>${allUsers.length} records found</b>`
+					document.getElementById("records").innerHTML=`<b>${newArr.length} records found</b>`
 				}
 			}
 			
@@ -310,6 +333,7 @@
         function showAddNewForm(){
             document.getElementById("cancel-btn").style.display="block"
             document.getElementById("addNew-btn").style.display="none"
+            document.getElementById("search-tab").style.display="none"
             document.getElementById("page").style.display="none"
             document.getElementById("addNewForm").style.display="block"
                                 
@@ -354,7 +378,7 @@
             document.getElementById("editForm").style.display="none"
             document.getElementById("addNew-btn").style.display="block"
             document.getElementById("page").style.display="block"
-
+            document.getElementById("search-tab").style.display="block"
         }
 
         
@@ -364,15 +388,19 @@
             document.getElementById("editForm").innerHTML= formDetails
 			document.getElementById("page").style.display="none"
 			document.getElementById("addNew-btn").style.display="none"
+			document.getElementById("search-tab").style.display="none"
 			document.getElementById("editForm").style.display="block"
 			document.getElementById("cancel-btn").style.display="block"
+			document.getElementById("records").style.display="none"
+			document.getElementById("back-btn").style.display="none"
 
             //SHOWS USER DETAILS AS VALUES TO BE EDITED
             document.getElementById("userId").value= x
-			document.getElementById("editImg").value= allUsers[x].pics
-			document.getElementById("editName").value= allUsers[x].name
-			document.getElementById("editEmail").value= allUsers[x].email
-			document.getElementById("editPhoneNumber").value= allUsers[x].phoneNumber	
+			document.getElementById("editImg").value= newArr[x].pics
+			document.getElementById("editName").value= newArr[x].name
+			document.getElementById("editEmail").value= newArr[x].email
+			document.getElementById("editPhoneNumber").value= newArr[x].phoneNumber
+			//alert(userId)	
 		}
 
 
@@ -388,12 +416,24 @@
                 }
 
             	
-                allUsers[userId]= editedUser
+                newArr[userId]= editedUser
 
-                //alert(userId)
-               // localStorage.setItem("allUsers", JSON.stringify(allUsers))
-                
-               // showNames()
+                if(newArr.length!=allUsers.length){
+                	findIndex= allUsers.findIndex(x=>x.name.toLowerCase().includes(param))
+
+                	allUsers[findIndex]=newArr[userId]
+
+                	localStorage.setItem("allUsers", JSON.stringify(allUsers))
+                	showNames()
+                }
+
+                else{
+
+	               allUsers[userId]=newArr[userId]
+	               localStorage.setItem("allUsers", JSON.stringify(allUsers))
+	                
+	               showNames()
+          		}
          }
 
 
@@ -416,6 +456,53 @@
 		}
 
 		
+		function showNewNames(){
+			y= (newArr.length)
+
+			cont=""
+			formDetails=""
+			for(x=0; x<y; x++){
+
+				cont+=`<div class="user-card">
+							<img src="${newArr[x].pics}" alt="" width= "100px" height="100px"><br>
+							<strong>Full Name</strong>: ${newArr[x].name}<br>
+							<strong>Email</strong>: ${newArr[x].email}<br>
+							<strong>Phone Number</strong>: ${newArr[x].phoneNumber}
+						
+							<!--BUTTONS FOR DELETING AND EDITING USERS-->
+							<div class="buttons">
+								<button id="delete-btn" onclick="deleteNames(${x})">Delete</button>
+								<button id="edit-btn" onclick="showEditForm(${x})">Edit user</button>
+							</div>
+						</div>`
+
+				//DETAILS FOR EDIT USER FORM
+				formDetails=`<form>
+				<p class="top">Edit User Details</p>
+				<input type="hidden" id="userId"/>
+				<p>Full Name</p>
+				<input type="text" placeholder=""  name ="fullName" id="editName" />
+
+				<p>Email</p>
+				<input type="text" placeholder=""  name="email" id="editEmail" />
+
+				<p>Phone</p>
+				<input type="text" placeholder=""  name="phoneNumber" id="editPhoneNumber"/>
+
+				<p>Display Image</p>
+				<select id="editImg">
+					<option value="1.jpg">Male image</option>
+					<option value="2.jpg">Female image</option>
+				</select>
+
+				<button id="submitEditForm-btn" onclick="editNames()">Submit</button>
+			</form>`
+
+
+			}
+
+			document.getElementById("content").innerHTML= cont
+		}
 
 
 
@@ -471,6 +558,7 @@
 
 		//FUNCTION FOR DISPLAYING NAMES BEING CALLED
 		showNames()
+
 
 
     </script>
