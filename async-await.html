@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Exercise</title>
+
+	<style>
+		.circle{
+			width:50px;
+			height:50px;
+			border-radius:50%;
+			background-color: red;
+			display:none;
+			padding:50px;
+		}
+
+		span{
+			display:none;
+			text-align: center;
+			margin:auto;
+		}
+
+		button{
+			padding:10px;
+			background-color:teal;
+			box-shadow:2px 2px 2px 2px black;
+			color:white;
+			display:block;
+			margin:auto;
+		}
+
+	</style>
+</head>
+<body>
+
+	<button id="circle-btn" onclick="showCircle()">click me</button>
+	<div class="circle" id="circle"	>
+		<span id="text">TIIDELab</span>
+	</div>
+
+	<script>
+		loadVideo("http://d10.o2tv.org/How%20to%20Get%20Away%20with%20Murder/Season%2006/How%20to%20Get%20Away%20with%20Murder%20-%20S06E14%20HD%20(TvShows4Mobile.Com)%20r5qyx.mp4")
+
+		async function loadVideo(videoSource){
+			videoTag= document.createElement("video")
+			videoTag.src=videoSource
+			videoTag.setAttribute("controls", "controls")
+			videoTag.setAttribute("autoplay", "autoplay")
+			document.body.appendChild(videoTag)
+
+			try{
+				 await videoSource 
+			}
+
+			catch(error){
+				alert(error)
+			}
+		}
+
+
+
+		circleShape=document.getElementById("circle")
+
+		async function showCircle(){
+			if(document.getElementById("text").style.display="none"){
+				circleShape.style.display="block"
+		
+					setTimeout(()=>{
+						circleShape.style.width="100px"
+						circleShape.style.height="100px"
+						circleShape.style.backgroundColor="green"
+					},200)
+
+					setTimeout(()=>{
+						circleShape.style.width="125px"
+						circleShape.style.height="125px"
+						circleShape.style.backgroundColor="green"
+					},300)
+
+					setTimeout(()=>{
+						circleShape.style.width="150px"
+						circleShape.style.height="150px"
+						circleShape.style.backgroundColor="blue"
+					},400)
+
+					setTimeout(()=>{
+						circleShape.style.width="175px"
+						circleShape.style.height="175px"
+						circleShape.style.backgroundColor="blue"
+					},500)
+
+					setTimeout(()=>{
+						circleShape.style.width="200px"
+						circleShape.style.height="200px"
+						circleShape.style.backgroundColor="yellow"
+					},600)
+
+					setTimeout(()=>{
+						circleShape.style.width="220px"
+						circleShape.style.height="220px"
+						circleShape.style.backgroundColor="yellow"
+					},700)
+
+					setTimeout(()=>{
+						circleShape.style.width="250px"
+						circleShape.style.height="250px"
+						circleShape.style.backgroundColor="orange"
+					},800)
+
+					setTimeout(()=>{
+						circleShape.style.width="275px"
+						circleShape.style.height="275px"
+						circleShape.style.backgroundColor="orange"
+					},900)
+
+					setTimeout(()=>{
+						circleShape.style.width="300px"
+						circleShape.style.height="300px"
+						circleShape.style.backgroundColor="violet"
+					},1000)
+
+					text= setTimeout(showText,1100)
+
+					await text
+			}
+
+			else{
+				document.getElementById("text").style.display="none"
+			}
+					
+				
+		}
+
+		function showText(){
+			document.getElementById("text").style.display="block"
+		}
+
+	</script>
+</body>
+</html>
