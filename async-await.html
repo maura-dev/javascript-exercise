@@ -47,17 +47,16 @@
 			videoTag= document.createElement("video")
 			videoTag.src=videoSource
 			videoTag.setAttribute("controls", "controls")
-			videoTag.setAttribute("autoplay", "autoplay")
+			videoTag.setAttribute("id", "video1")
 			document.body.appendChild(videoTag)
 
-			try{
-				 await videoSource 
-			}
-
-			catch(error){
-				alert(error)
-			}
+			await playvideo()
 		}
+
+		function playvideo(){
+			document.getElementById("video1").play()//to play immediately 
+		}
+
 
 
 
